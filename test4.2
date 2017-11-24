@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+ 
+void swap(int*a,int*b)
+{
+    int temp;
+    temp=*a;
+    *a=*b;
+    *b=temp;
+}
+void select_sort(int A[],int n)
+{
+    register int i,j,min,m;
+    for(i=0;i<n-1;i++)
+    {
+        min=i;//查找最小值
+        for(j=i+1;j<n;j++)
+        {
+            if(A[min]>A[j])
+            {
+                min=j;
+            }
+        }
+        if(min!=i)
+        {
+            swap(&A[min],&A[i]);
+            printf("第%d趟排序结果为:\n",i+1);
+            for(m=0;m<n;m++)
+            {
+                if(m>0)
+                {
+                    printf("");
+                }
+                printf("%d",A[m]);
+            }
+            printf("\n");
+        }
+    }
+}
+int main(void)
+{
+    int n;
+    while(scanf("%d",&n)!=EOF)    /* VS2013等版本中需使用scanf_s()，VC6.0中使用scanf() */
+    {
+        int i;
+        int*A=(int*)malloc(sizeof(int)*n);
+        for(i=0;i<n;i++)
+        {
+            scanf("%d",&A[i]);
+        }
+        select_sort(A,n);
+        printf("最终排序结果为:\n");
+        for(i=0;i<n;i++)
+        {
+            if(i>0){
+                printf("");
+            }
+            printf("%d",A[i]);
+        }
+        printf("\n");
+    }
+    return 0;
+}

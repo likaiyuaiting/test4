@@ -1,0 +1,50 @@
+void max_heap(int *arr,int start,int end)//调整为一个最大值堆
+{
+    int i,j,tmp;
+    i = start,tmp = arr[i];
+
+    for(j=2*i+1; j<=end; j*=2)
+    {
+        while(j<end && arr[j]<arr[j+1])//让j指向左孩子和右孩子中大的那个
+            j++;
+
+        if(tmp >= arr[j])
+            break;
+        else
+        {
+            arr[i] = arr[j];
+            arr[j] = tmp;
+        }
+        i = j;
+    }
+}
+
+void heap_sort(int *arr,int sz)
+{
+    int i;
+    for(i=sz/2-1; i>=0; i--)　//调整数组为最大值堆
+        max_heap(arr,i,sz-1);
+
+    for(i=sz-1; i>0; i--)//拿出根结点放到最后位置,然后进行调整
+    {
+        int tmp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = tmp;
+        max_heap(arr,0,i-1);
+    }
+
+}
+
+
+int main()
+{
+    int i;
+    int arr[] = {76,32,14,86,40,98,18,57,13,20,85};
+    int sz = sizeof(arr)/sizeof(arr[0]);
+
+    heap_sort(arr,sz);
+
+    for(i=0; i<sz; i++)
+        printf("%d ",arr[i]);
+    return 0;
+}

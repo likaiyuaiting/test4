@@ -41,7 +41,7 @@ void select_sort(int A[],int n)
 int main(void)
 {
     int n;
-    while(scanf("%d",&n)!=EOF)    /* VS2013等版本中需使用scanf_s()，VC6.0中使用scanf() */
+    while( scanf("%d",&n)!=EOF )    /* VS2013等版本中需使用scanf_s()，VC6.0中使用scanf() */
     {
         int i;
         int*A=(int*)malloc(sizeof(int)*n);
